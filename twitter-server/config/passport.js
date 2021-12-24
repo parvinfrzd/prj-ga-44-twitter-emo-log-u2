@@ -6,9 +6,9 @@ const Users = require('../models/user');
 passport.use(
     new GoogleStrategy(
         {
-            clientID: "1018474768298-61rqod0e1t8bm3cuodg3vfjco9a6haus.apps.googleusercontent.com",
-            clientSecret: "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",
-            callbackURL: "http://localhost:3000/oauth2callback",
+            clientID: process.env.GOOGLE_CLIENT_ID,
+            clientSecret: process.env.GOOGLE_SECRET,
+            callbackURL: process.env.GOOGLE_CALLBACK,
         },
         // a user has logged in with OAuth...
         function (accessToken, refreshToken, profile, cb) {
