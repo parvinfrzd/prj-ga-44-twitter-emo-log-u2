@@ -1,5 +1,6 @@
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+const UserLogin = require('../models/userLogin');
 
 passport.use(new GoogleStrategy({
     clientID: process.env.GOOGLE_CLIENT_ID,
@@ -7,6 +8,31 @@ passport.use(new GoogleStrategy({
     callbackURL: process.env.GOOGLE_CALLBACK
 },
     function (accessToken, refreshToken, profile, cb) {
-        // a user has logged in with OAuth...
+        UserLogin.findOne({ 'googleId': profile.id }, function (err, user) {
+            if (err) return cb(err);
+            if (user) {
+                return cb(null, student);
+            } else {
+                var newUser = new UserLogin({
+                    name: profile.displayName,
+                    email: profile.emails[0].value,
+                    googleId = profile.id
+                });
+                newUser.save(function (err) {
+                    if (err) return cb(err);
+                    return cb(null, newUser);
+                })
+            }
+        })
     }
 ));
+
+passport.serializeUser(function (user, done) {
+    done(null, user.id);
+});
+
+passport.deserializeUser(function (id, done) {
+    UserLogin.findById(id, function (err, user) {
+        done(err, user);
+    });
+});
