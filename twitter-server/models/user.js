@@ -4,10 +4,10 @@ var userSchema = new mongoose.Schema({
     email: String,
     cohort: String,
     avatar: String,
-    facts: [factSchema],
+    // facts: [factSchema],
     googleId: String
 }, {
     timestamps: true
 });
 
-module.exports = mongoose.model('UserLogin', userSchema);
+module.exports = mongoose.model('User', userSchema);
