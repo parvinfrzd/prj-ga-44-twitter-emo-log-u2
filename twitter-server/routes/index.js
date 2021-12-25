@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const passport = require('passport');
+const Users = require('../models/user');
 
 // The root route renders our only view
 router.get('/', function (req, res) {

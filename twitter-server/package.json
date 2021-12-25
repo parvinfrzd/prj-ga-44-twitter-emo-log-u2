@@ -1,10 +1,10 @@
 {
-  "name": "twitter-server",
+  "name": "twitter-sei",
   "version": "0.0.0",
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "dev": "nodemon ./bin/www"
+    "dev": "node ./bin/www"
   },
   "dependencies": {
     "cookie-parser": "^1.4.4",
@@ -17,6 +17,7 @@
     "mongoose": "^5.9.2",
     "morgan": "~1.9.0",
     "passport": "^0.5.0",
-    "passport-google-oauth": "^2.0.0"
+    "passport-google-oauth": "^2.0.0",
+    "passport-google-oauth20": "^2.0.0"
   }
 }

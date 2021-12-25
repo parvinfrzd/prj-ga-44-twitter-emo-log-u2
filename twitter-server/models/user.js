@@ -4,7 +4,6 @@ var userSchema = new mongoose.Schema({
     email: String,
     cohort: String,
     avatar: String,
-    // facts: [factSchema],
     googleId: String
 }, {
     timestamps: true
